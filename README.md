@@ -4,7 +4,7 @@ Shum в терминале: чаты, приглашения, общение ч�
 
 ## Установка
 
-Текущий выпуск: **0.1.3 preview**, macOS **15.0 и новее**, **Apple Silicon**.
+Текущий выпуск: **0.1.4 preview**, macOS **15.0 и новее**, **Apple Silicon**.
 
 ```sh
 brew install hitechteam/shum/shum
