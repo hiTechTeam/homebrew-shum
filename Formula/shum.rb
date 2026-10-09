@@ -9,7 +9,9 @@ class Shum < Formula
   depends_on macos: :sequoia
 
   def install
-    prefix.install "Shum.app"
+    app = buildpath/"Shum.app"
+    app = buildpath unless app.directory?
+    (prefix/"Shum.app").install app/"Contents"
     bin.install_symlink prefix/"Shum.app/Contents/MacOS/shum"
   end
 
