@@ -1,92 +1,65 @@
-# Shum CLI для Homebrew
+# Shum Homebrew Tap
 
-Shum в терминале: чаты, приглашения, интернет-переписка и Bluetooth.
-Исходники клиента: [hiTechTeam/Shum-CLI](https://github.com/hiTechTeam/Shum-CLI).
+English · [Русский](README.ru.md)
 
-## Установка и обновление
+Homebrew formula and binary releases for [Shum CLI](https://github.com/hiTechTeam/Shum-CLI).
 
-Текущий выпуск: **0.1.6 preview**, **macOS 15+, Apple Silicon и Intel**.
+## Install and update
+
+**0.1.6 preview, macOS 15+, Apple Silicon and Intel.**
 
 ```sh
 brew install hitechteam/shum/shum
 shum
 ```
 
-Первый запуск предлагает создать профиль. Список чатов: `shum chats`.
+The first launch creates a profile. Update with:
 
 ```sh
 brew update
 brew upgrade shum
 ```
 
-Формула проверяет SHA-256 и устанавливает подписанный `Shum.app`.
-Команда `bin/shum` ссылается на бинарник внутри него. Служба использует
-стабильный `opt/shum`, при следующем запуске CLI обновляется автоматически
-по версии и хэшу, сохраняя очередь отправки и профиль.
+The formula checks SHA-256 and installs Shum.app. The service uses the stable `opt/shum` path. The next CLI command replaces an outdated service and preserves the profile and outgoing queue.
 
-[Выпуск 0.1.6](https://github.com/hiTechTeam/homebrew-shum/releases/tag/v0.1.6)
-содержит универсальный архив, SHA-256, установщик `.pkg` и сведения о подписи.
-Shum.app подписан постоянным сертификатом Shum CLI Signing. Сертификат
-самоподписанный, не Developer ID; нотарификации Apple нет, контейнер `.pkg`
-без подписи Installer. Запуск без предупреждений Gatekeeper на чистой
-учётной записи и отсутствие повторного запроса Bluetooth при настоящем
-обновлении пока не подтверждены. На настоящем Intel Mac проверки не было;
-запуск и релейный сценарий проверены под Rosetta.
+[Release files](https://github.com/hiTechTeam/homebrew-shum/releases/tag/v0.1.6) include a universal archive, checksums, installer and signature metadata. The app is self-signed, not Developer ID or notarized; the pkg container is unsigned. Intel was tested through Rosetta only. Gatekeeper on a clean account and Bluetooth permission persistence across certificate-signed releases remain unverified.
 
-## Установка без Homebrew
+## Without Homebrew
+
+Use the same command to install or update:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/hiTechTeam/Shum-CLI/main/install.sh | sh
 ```
 
-Скрипт ставит бандл в `~/.local/share/shum`, команду в `~/.local/bin/shum`.
-Он проверяет SHA-256 и подпись, не меняет файлы оболочки и отказывается
-создавать вторую копию рядом с Homebrew. Повторный запуск обновляет установку.
-Если PATH не содержит `~/.local/bin`, скрипт печатает нужную команду.
+Installs under `~/.local/share/shum` and `~/.local/bin`, checks checksum and signature, and prints a PATH hint if needed. Shell files stay unchanged. Installation alongside Homebrew is refused.
 
-## Удаление
-
-Перед удалением пакета:
+## Uninstall
 
 ```sh
 shum daemon --uninstall
 brew uninstall shum
 ```
 
-Для установки скриптом:
+For the script installation:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/hiTechTeam/Shum-CLI/main/install.sh | sh -s -- --uninstall
 ```
 
-Службы всех профилей останавливаются, LaunchAgents и кэш приложения удаляются.
-Профили, ключи и переписка остаются. Данные macOS лежат в
-`~/Library/Application Support/org.Shum.Shum` или в заданном `--data-dir`;
-ключи обычных профилей находятся в Keychain. Для полного стирания после
-остановки служб удалите свой каталог данных вручную, затем отдельно ключи
-Shum в Keychain. Не удаляйте каталог, если хотите сохранить переписку.
+Services and LaunchAgents are removed. Profiles, keys and messages stay in `~/Library/Application Support/org.Shum.Shum` or your `--data-dir`; profile keys may also be in Keychain. To erase all data, stop services first, then manually delete the data directory and the profile's Shum items in Keychain.
 
-Если формула уже удалена, для каждого файла Shum в `~/Library/LaunchAgents`:
+If the formula is already gone, unload and delete each existing Shum plist:
 
 ```sh
-launchctl bootout gui/$(id -u) "$HOME/Library/LaunchAgents/org.shum.cli.<ID_профиля>.plist"
-rm "$HOME/Library/LaunchAgents/org.shum.cli.<ID_профиля>.plist"
+launchctl bootout "gui/$(id -u)" "$HOME/Library/LaunchAgents/org.shum.cli.<profile-id>.plist"
+rm "$HOME/Library/LaunchAgents/org.shum.cli.<profile-id>.plist"
 ```
 
-Подставьте ID из имени существующего файла. `KeepAlive=false` не допускает
-цикл перезапуска при отсутствии бинарника. После выгрузки службы старый
-кэш `Shum.app` и `services/` в своём каталоге данных можно удалить отдельно.
-Профили, базу и ключи при ручной очистке не удаляйте.
+Replace the placeholder with the ID in the filename. `KeepAlive=false` prevents a restart loop when the executable is missing.
 
-## Остальные платформы
+Windows and Linux packages are in development. See [CLI documentation](https://github.com/hiTechTeam/Shum-CLI) and [release checks](https://github.com/hiTechTeam/Shum-CLI/blob/main/docs/release-verification.md).
 
-| Платформа | Статус |
-| --- | --- |
-| macOS 15+, Apple Silicon и Intel | Homebrew, скрипт и `.pkg` |
-| Windows / winget | Пакет готовится |
-| Linux / apt / dnf | Пакеты готовятся |
+## License
 
-`command -v shum` показывает используемую установку. После установки через
-Homebrew актуальная команда находится в `$(brew --prefix)/bin/shum`.
-Исходники и текст лицензии доступны в репозитории CLI. Лицензия этого tap: MIT.
-Автоматический CI выключен.
+[MIT](LICENSE). Automatic CI is disabled.
