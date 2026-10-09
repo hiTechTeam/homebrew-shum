@@ -6,7 +6,7 @@ Homebrew formula and binary releases for [Shum CLI](https://github.com/hiTechTea
 
 ## Install and update
 
-**0.1.6 preview, macOS 15+, Apple Silicon and Intel.**
+**0.1.7 preview, macOS 15+, Apple Silicon and Intel.**
 
 ```sh
 brew install hitechteam/shum/shum
@@ -22,7 +22,7 @@ brew upgrade shum
 
 The formula checks SHA-256 and installs Shum.app. The service uses the stable `opt/shum` path. The next CLI command replaces an outdated service and preserves the profile and outgoing queue.
 
-[Release files](https://github.com/hiTechTeam/homebrew-shum/releases/tag/v0.1.6) include a universal archive, checksums, installer and signature metadata. The app is self-signed, not Developer ID or notarized; the pkg container is unsigned. Intel was tested through Rosetta only. Gatekeeper on a clean account and Bluetooth permission persistence across certificate-signed releases remain unverified.
+[Release files](https://github.com/hiTechTeam/homebrew-shum/releases/tag/v0.1.7) include a universal archive, checksums, installer and signature metadata. The app is self-signed, not Developer ID or notarized; the pkg container is unsigned. Intel was tested through Rosetta only. Gatekeeper on a clean account and Bluetooth permission persistence across certificate-signed releases remain unverified.
 
 ## Without Homebrew
 
@@ -47,7 +47,7 @@ For the script installation:
 curl -fsSL https://raw.githubusercontent.com/hiTechTeam/Shum-CLI/main/install.sh | sh -s -- --uninstall
 ```
 
-Services and LaunchAgents are removed. Profiles, keys and messages stay in `~/Library/Application Support/org.Shum.Shum` or your `--data-dir`; profile keys may also be in Keychain. To erase all data, stop services first, then manually delete the data directory and the profile's Shum items in Keychain.
+Services and LaunchAgents are removed. Profiles, keys and messages stay in `~/Library/Application Support/org.Shum.Shum` or your `--data-dir`; profile keys may also be in Keychain. To erase profiles, keys and history, run `shum daemon --uninstall --purge` before `brew uninstall shum` and confirm with `DELETE`. This includes profile keys in Keychain. Without `--data-dir`, it also covers Shum roots registered in LaunchAgents. Unrelated files are preserved.
 
 If the formula is already gone, unload and delete each existing Shum plist:
 
@@ -58,7 +58,7 @@ rm "$HOME/Library/LaunchAgents/org.shum.cli.<profile-id>.plist"
 
 Replace the placeholder with the ID in the filename. `KeepAlive=false` prevents a restart loop when the executable is missing.
 
-Windows and Linux packages are in development. See [CLI documentation](https://github.com/hiTechTeam/Shum-CLI) and [release checks](https://github.com/hiTechTeam/Shum-CLI/blob/main/docs/release-verification.md).
+Windows and Linux packages are in development. See [CLI documentation](https://github.com/hiTechTeam/Shum-CLI) and [release checks](https://github.com/hiTechTeam/Shum-CLI/blob/main/docs/release-verification-0.1.7.md).
 
 ## License
 

@@ -6,7 +6,7 @@
 
 ## Установка и обновление
 
-**0.1.6 preview, macOS 15+, Apple Silicon и Intel.**
+**0.1.7 preview, macOS 15+, Apple Silicon и Intel.**
 
 ```sh
 brew install hitechteam/shum/shum
@@ -22,7 +22,7 @@ brew upgrade shum
 
 Формула проверяет SHA-256 и устанавливает Shum.app. Служба использует стабильный путь `opt/shum`. Следующая команда CLI заменяет старую службу, сохраняя профиль и очередь отправки.
 
-В [выпуске](https://github.com/hiTechTeam/homebrew-shum/releases/tag/v0.1.6) есть универсальный архив, контрольные суммы, установщик и сведения о подписи. Сертификат самоподписанный, не Developer ID; нотарификации нет, контейнер pkg не подписан. Intel проверен только под Rosetta. Gatekeeper на чистой учётной записи и сохранение разрешения Bluetooth между сертификатными выпусками пока не проверены.
+В [выпуске](https://github.com/hiTechTeam/homebrew-shum/releases/tag/v0.1.7) есть универсальный архив, контрольные суммы, установщик и сведения о подписи. Сертификат самоподписанный, не Developer ID; нотарификации нет, контейнер pkg не подписан. Intel проверен только под Rosetta. Gatekeeper на чистой учётной записи и сохранение разрешения Bluetooth между сертификатными выпусками пока не проверены.
 
 ## Без Homebrew
 
@@ -47,7 +47,7 @@ brew uninstall shum
 curl -fsSL https://raw.githubusercontent.com/hiTechTeam/Shum-CLI/main/install.sh | sh -s -- --uninstall
 ```
 
-Службы и LaunchAgents удаляются. Профили, ключи и сообщения остаются в `~/Library/Application Support/org.Shum.Shum` или вашем `--data-dir`; ключи могут быть в Keychain. Для полного стирания сначала остановите службы, затем вручную удалите каталог данных и объекты Shum этого профиля в Keychain.
+Службы и LaunchAgents удаляются. Профили, ключи и сообщения остаются в `~/Library/Application Support/org.Shum.Shum` или вашем `--data-dir`; ключи могут быть в Keychain. Для полного стирания профилей, ключей и переписки выполните `shum daemon --uninstall --purge` перед `brew uninstall shum` и подтвердите словом `DELETE`. Ключи профилей в Keychain также удаляются. Без `--data-dir` учитываются корни Shum из LaunchAgents. Посторонние файлы сохраняются.
 
 Если формула уже удалена, выгрузите и удалите каждый существующий plist Shum:
 
@@ -58,7 +58,7 @@ rm "$HOME/Library/LaunchAgents/org.shum.cli.<profile-id>.plist"
 
 Подставьте ID из имени файла. `KeepAlive=false` предотвращает цикл перезапуска без бинарника.
 
-Пакеты Windows и Linux готовятся. См. [документацию CLI](https://github.com/hiTechTeam/Shum-CLI) и [проверки выпуска](https://github.com/hiTechTeam/Shum-CLI/blob/main/docs/release-verification.md).
+Пакеты Windows и Linux готовятся. См. [документацию CLI](https://github.com/hiTechTeam/Shum-CLI) и [проверки выпуска](https://github.com/hiTechTeam/Shum-CLI/blob/main/docs/release-verification-0.1.7.md).
 
 ## Лицензия
 
