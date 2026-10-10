@@ -6,7 +6,7 @@
 
 ## Установка и обновление
 
-**0.1.7 preview, ревизия Homebrew 2 (0.1.7_2), macOS 15+, Apple Silicon и Intel.**
+**0.1.8 preview, macOS 15+, Apple Silicon и Intel.**
 
 ```sh
 brew install hitechteam/shum/shum
@@ -22,9 +22,9 @@ brew upgrade shum
 
 Формула проверяет SHA-256 и устанавливает Shum.app. Служба использует стабильный путь `opt/shum`. Следующая команда CLI заменяет старую службу, сохраняя профиль и очередь отправки.
 
-В [выпуске](https://github.com/hiTechTeam/homebrew-shum/releases/tag/v0.1.7-r2) есть универсальный архив, контрольные суммы, установщик и сведения о подписи. Сертификат самоподписанный, не Developer ID; нотарификации нет, контейнер pkg не подписан. Intel проверен только под Rosetta. Gatekeeper на чистой учётной записи и сохранение разрешения Bluetooth между сертификатными выпусками пока не проверены.
+В [выпуске](https://github.com/hiTechTeam/homebrew-shum/releases/tag/v0.1.8) есть универсальный архив, контрольные суммы, установщик и сведения о подписи. Сертификат самоподписанный, не Developer ID; нотарификации нет, контейнер pkg не подписан. Intel проверен только под Rosetta. Gatekeeper на чистой учётной записи и сохранение разрешения Bluetooth между сертификатными выпусками пока не проверены.
 
-Приложение по-прежнему показывает `shum 0.1.7`. Эта сборка показывает пиксельные реакции с именами авторов в переписке. У одинаковой реакции одна иконка и имена через `/`, у разных своя иконка и имя автора.
+Версия 0.1.8 добавляет десять языков, меню языка по Ctrl+L, выбор реакции по Ctrl+R и события приглашений в переписке. Аватары и реакции остаются видимыми вне меню.
 
 ## Без Homebrew
 
@@ -60,7 +60,7 @@ rm "$HOME/Library/LaunchAgents/org.shum.cli.<profile-id>.plist"
 
 Подставьте ID из имени файла. `KeepAlive=false` предотвращает цикл перезапуска без бинарника.
 
-Пакеты Windows и Linux готовятся. См. [документацию CLI](https://github.com/hiTechTeam/Shum-CLI) и [проверки выпуска](https://github.com/hiTechTeam/Shum-CLI/blob/main/docs/release-verification-0.1.7-r2.md).
+Пакеты Windows и Linux готовятся. См. [документацию CLI](https://github.com/hiTechTeam/Shum-CLI) и [проверки выпуска](https://github.com/hiTechTeam/Shum-CLI/blob/main/docs/release-verification-0.1.8.md).
 
 ## Лицензия
 
