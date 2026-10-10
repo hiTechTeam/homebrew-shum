@@ -1,11 +1,11 @@
 class Shum < Formula
   desc "Private messenger in your terminal"
   homepage "https://github.com/hiTechTeam/Shum-CLI"
-  url 'https://github.com/hiTechTeam/homebrew-shum/releases/download/v0.1.7-r1/shum-macos-universal.tar.gz'
+  url 'https://github.com/hiTechTeam/homebrew-shum/releases/download/v0.1.7-r2/shum-macos-universal.tar.gz'
   version "0.1.7"
-  sha256 "dde3ee0e637e0ebadb9d6259e6aed5eae50f303511073b9fe3d85f1117802207"
+  sha256 "3cbcda7e93f0a5d1009d7e36da1098771f6771ce9b0ae5dbe0e2ab693933bc64"
   license "MIT"
-  revision 1
+  revision 2
 
   depends_on macos: :sequoia
 

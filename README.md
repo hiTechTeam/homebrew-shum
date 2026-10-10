@@ -6,7 +6,7 @@ Homebrew formula and binary releases for [Shum CLI](https://github.com/hiTechTea
 
 ## Install and update
 
-**0.1.7 preview, Homebrew revision 1 (0.1.7_1), macOS 15+, Apple Silicon and Intel.**
+**0.1.7 preview, Homebrew revision 2 (0.1.7_2), macOS 15+, Apple Silicon and Intel.**
 
 ```sh
 brew install hitechteam/shum/shum
@@ -20,11 +20,11 @@ brew update
 brew upgrade shum
 ```
 
-The application still reports `shum 0.1.7`. This package adds the `/react` message and pixel reaction picker, restores profile avatars in Warp, and clarifies unknown Bluetooth distance.
+The application still reports `shum 0.1.7`. This package shows pixel reaction icons with author names in chat history. Matching reactions share one icon and names separated by `/`; different reactions each show their icon and author.
 
 The formula checks SHA-256 and installs Shum.app. The service uses the stable `opt/shum` path. The next CLI command replaces an outdated service and preserves the profile and outgoing queue.
 
-[Release files](https://github.com/hiTechTeam/homebrew-shum/releases/tag/v0.1.7-r1) include a universal archive, checksums, installer and signature metadata. The app is self-signed, not Developer ID or notarized; the pkg container is unsigned. Intel was tested through Rosetta only. Gatekeeper on a clean account and Bluetooth permission persistence across certificate-signed releases remain unverified.
+[Release files](https://github.com/hiTechTeam/homebrew-shum/releases/tag/v0.1.7-r2) include a universal archive, checksums, installer and signature metadata. The app is self-signed, not Developer ID or notarized; the pkg container is unsigned. Intel was tested through Rosetta only. Gatekeeper on a clean account and Bluetooth permission persistence across certificate-signed releases remain unverified.
 
 ## Without Homebrew
 
@@ -60,7 +60,7 @@ rm "$HOME/Library/LaunchAgents/org.shum.cli.<profile-id>.plist"
 
 Replace the placeholder with the ID in the filename. `KeepAlive=false` prevents a restart loop when the executable is missing.
 
-Windows and Linux packages are in development. See [CLI documentation](https://github.com/hiTechTeam/Shum-CLI) and [release checks](https://github.com/hiTechTeam/Shum-CLI/blob/main/docs/release-verification-0.1.7.md).
+Windows and Linux packages are in development. See [CLI documentation](https://github.com/hiTechTeam/Shum-CLI) and [release checks](https://github.com/hiTechTeam/Shum-CLI/blob/main/docs/release-verification-0.1.7-r2.md).
 
 ## License
 
