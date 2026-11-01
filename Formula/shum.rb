@@ -1,9 +1,9 @@
 class Shum < Formula
   desc "Private messenger in your terminal"
   homepage "https://github.com/hiTechTeam/Shum-CLI"
-  url 'https://github.com/hiTechTeam/homebrew-shum/releases/download/v0.1.27/shum-macos-arm64.tar.gz'
-  version "0.1.27"
-  sha256 "6cfa3482142aa64d4539144573622ea497060eac293764a88d1704020f154dbe"
+  url 'https://github.com/hiTechTeam/homebrew-shum/releases/download/v0.1.28/shum-macos-arm64.tar.gz'
+  version "0.1.28"
+  sha256 "2465c51a2022937b607185b5eb5795c11544a061c30ae78bff34c9b991ce7144"
   license "MIT"
 
   depends_on arch: :arm64
@@ -21,6 +21,6 @@ class Shum < Formula
   end
 
   test do
-    assert_equal "shum 0.1.27", shell_output("#{bin}/shum --version").strip
+    assert_equal "shum 0.1.28", shell_output("#{bin}/shum --version").strip
   end
 end
